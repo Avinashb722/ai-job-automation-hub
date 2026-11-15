@@ -1,0 +1,72 @@
+keywords:
+- Full Stack Developer
+- Python Developer
+- React Developer
+- Node.js Developer
+- Software Development Engineer
+- SDE
+- Frontend Developer
+- Backend Developer
+user_skills:
+- python
+- javascript
+- sql
+- react.js
+- node.js
+- express.js
+- mysql
+- supabase
+- git
+- rest apis
+veto_skills:
+- java
+- .net
+- php
+- laravel
+- c++
+- ruby
+- sales
+- bpo
+filters:
+  locations:
+  - Bengaluru
+  - Remote
+  - Hyderabad
+  - Pune
+  experience: 0-1
+  job_type:
+  - Full Time
+  - Internship
+resume_path: C:\\Users\\Hp\\Downloads\\resume.pdf
+applicant:
+  name: Avinash Biradar
+  email: avinashbiradar722@gmail.com
+  phone: '8746988163'
+  expected_ctc: '400000'
+  current_ctc: '0'
+  notice_period: '15'
+  experience_years: '0'
+  willing_to_relocate: 'Yes'
+  current_location: Bengaluru, Karnataka
+cover_note: 'I am a Fresher Full Stack Developer and Computer Science graduate with
+  hands-on internship
+
+  experience building web applications and REST APIs using Python, React, Node.js,
+
+  Django, and SQL. I have developed real-world projects including AI voice assistants,
+
+  deal aggregators, and academic platforms. I am an immediate joiner (15-day notice)
+
+  seeking an entry-level SDE / Full Stack role (Expected CTC: 4 LPA).
+
+  '
+ai:
+  enabled: true
+  provider: gemini
+  model: gemini-3.5-flash-lite
+  score_threshold: 70
+  auto_answer_questions: true
+limits:
+  max_per_platform: 30
+  delay_between_jobs: 6
+  delay_between_searches: 4
