@@ -189,7 +189,7 @@
     "ai_reason": "AI/ML role without specific stack requirements, too broad for a fresher full-stack profile.",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:34:17.943348+00:00"
+    "updated_at": "2026-11-15T05:55:50.365944+00:00"
   },
   {
     "job_id": "131126503562",
@@ -384,7 +384,7 @@
     "ai_reason": "Python Developer role, 0-1 yrs exp, strong language match",
     "applied": false,
     "status": "Ready to Apply",
-    "updated_at": "2026-11-15T05:34:17.943348+00:00"
+    "updated_at": "2026-11-15T05:55:50.365944+00:00"
   },
   {
     "job_id": "131126500568",
@@ -582,7 +582,7 @@
     "ai_reason": "C++ and DSA focused role, not matching web/Python/JS stack.",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:34:17.943348+00:00"
+    "updated_at": "2026-11-15T05:55:50.365944+00:00"
   },
   {
     "job_id": "131126502280",
@@ -650,7 +650,7 @@
     "ai_reason": "J2EE focused software developer role, legacy enterprise tech",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:34:17.943348+00:00"
+    "updated_at": "2026-11-15T05:55:50.365944+00:00"
   },
   {
     "job_id": "111126032610",
@@ -705,7 +705,7 @@
     "ai_reason": "Frontend engineer role but stack not specified, wide exp range",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:34:17.943348+00:00"
+    "updated_at": "2026-11-15T05:55:50.365944+00:00"
   },
   {
     "job_id": "131126925620",
@@ -739,7 +739,7 @@
     "ai_reason": "AI management/design engineering, vague programming requirements",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:34:17.943348+00:00"
+    "updated_at": "2026-11-15T05:55:50.365944+00:00"
   },
   {
     "job_id": "131126500739",
@@ -773,6 +773,6 @@
     "ai_reason": "C++ and cloud-heavy systems role, not aligned with candidate's full-stack JS/Python focus",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:34:17.943348+00:00"
+    "updated_at": "2026-11-15T05:55:50.365944+00:00"
   }
 ]
