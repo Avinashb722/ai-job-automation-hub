@@ -118,6 +118,7 @@ class JobFilterPipeline2:
         n = len(jobs); jobs = self.desc_red_flag_check(jobs); d_flags   = n - len(jobs)
         n = len(jobs); jobs = self.title_filter(jobs);        d_title   = n - len(jobs)
         n = len(jobs); jobs = self.company_veto(jobs);        d_company = n - len(jobs)
+        n = len(jobs); jobs = self.location_filter(jobs);     d_loc     = n - len(jobs)
 
         jobs = self.tag_presort(jobs)
         jobs = jobs[:self.ai_score_limit]
@@ -129,6 +130,7 @@ class JobFilterPipeline2:
             (d_flags,   "flags"),
             (d_title,   "title"),
             (d_company, "company"),
+            (d_loc,     "location"),
         ]
         breakdown = "  ".join(f"-{d} {lbl}" for d, lbl in dropped if d > 0) or "none filtered"
         print(f"  {raw} fetched  →  {len(jobs)} to score   ({breakdown})")
@@ -293,6 +295,26 @@ class JobFilterPipeline2:
             if any(vc in company for vc in self.VETO_COMPANIES):
                 continue
             clean.append(j)
+        return clean
+
+    # =========================================================
+    # LOCATION FILTER — Bangalore only; Pune & Mumbai only if remote
+    # =========================================================
+
+    def location_filter(self, jobs):
+        clean = []
+        for j in jobs:
+            loc = (j.get("location") or "").lower()
+            if not loc:
+                clean.append(j)
+                continue
+            is_remote = any(r in loc for r in ["remote", "work from home", "wfh", "anywhere", "telecommute"])
+            is_blr = any(b in loc for b in ["bangalore", "bengaluru", "blr"])
+            if is_remote or is_blr:
+                clean.append(j)
+            else:
+                # Discard on-site non-Bangalore jobs (e.g. on-site Pune, Mumbai, Hyderabad, etc.)
+                continue
         return clean
 
     # =========================================================

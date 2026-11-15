@@ -34,10 +34,10 @@
     "description": "<p>We are looking for a Full Stack Web Developer.</p><p>MERN stack candidates only apply</p>",
     "url": "/job-listings-fullstack-web-developer-globalecare-hyderabad-0-to-5-years-131126009190",
     "ai_score": 68,
-    "ai_reason": "Full stack + MERN stack mentioned, 0-5 yrs exp, good tech overlap",
+    "ai_reason": "Location Policy: Non-Bangalore on-site rejected (Hyderabad) (Skill match: 68%)",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "131126500725",
@@ -68,10 +68,10 @@
     "description": "Job Type. Full time. <br><br>Experience: 0-3 years in full stack development.  . Proficiency in modern web technologies (e.g<br><br>Experience with databases (e.g.,SQL or NoSQL) and API development.  . Understanding of version control,deployment,and cloud platforms.  . Problem-solving mindset and a passion for building practical solutions",
     "url": "/job-listings-full-stack-developer-training-basket-noida-0-to-3-years-131126500725",
     "ai_score": 55,
-    "ai_reason": "Full stack + SQL with 0-3 yrs, training company type is unclear",
+    "ai_reason": "Location Policy: Non-Bangalore on-site rejected (Noida) (Skill match: 55%)",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "131126500741",
@@ -102,10 +102,10 @@
     "description": "<h3>Job Title</h3> <p>Web Developer</p> <h3>Location</h3> <p>Thane</p> <h3>Job Type</h3> <p>Full time On-site</p> <h3>Department</h3> <p>Engineering</p> <h3>Role Overview</h3> <p>We at Ideamagix, are looking for a qualified candidate to join our Web Development team for Indian as well as International markets who can actively participate in various stages of Web Development.</p> <h3>Responsibilities</h3> <ul> <li>Work with front-end developers and provide server-side algorithms of user-facing web application elements.</li> <li>Code and create functional web applications, optimize code for increasing response time and efficiency.</li> <li>Analyze the goals and requirements, handle bugs and errors, and come up with solutions.</li> <li>Interact with the database for storing data and ensure that every user has access to what they search.</li> <li>Accomplish the projects and goals in time.</li> <li>Manage APIs that are executed across the devices.</li> <li>Involve in defining the architecture of the system.</li> </ul> <h3>Required Skills</h3> <ul> <li>In-depth knowledge of PHP and related frameworks like Laravel, CodeIgniter, Yii. Knowledge of Ruby, Python, NodeJs, and Java will be an added advantage.</li> <li>Good Communication, Analytical, Logical, and Leadership skills.</li> <li>Knowledge of front-end technologies, such as Angular, React, HTML, CSS, and JavaScript will be preferred.</li> <li>Capable of managing a hosting environment along with the database administration such as MySQL, Oracle.</li> <li>Excellent knowledge of APIs (REST, SOAP) and Web services.</li> <li>Capable of scaling applications to handle the load changes.</li> <li>Knowledge of accessibility and security compliance.</li> <li>Good to have experience in version control, such as GIT.</li> </ul> <h3>Key Skills Qualifications</h3> <ul> <li>PHP</li> <li>Laravel</li> <li>CodeIgniter</li> <li>Node.js</li> <li>React</li> <li>Angular</li> <li>JavaScript</li> <li>HTML</li> <li>CSS</li> </ul> <p>Ready to take the next step</p> <h3>Job Specifications</h3> <ul> <li>Experience Required: Open to all experience levels</li> <li>Total Openings: 2 positions</li> <li>Hiring Timeline: Actively Hiring (Immediate Joiners)</li> </ul>\n\nDisclaimer: This job posting has been aggregated from external source. Role details, content, and availability are subject to change. Applicants are advised to confirm the latest information directly on the company website before applying.",
     "url": "/job-listings-web-developer-ideamagix-thane-0-to-4-years-131126500741",
     "ai_score": 42,
-    "ai_reason": "HTML + Python/MySQL optional, 0-4 yrs exp, web developer role",
+    "ai_reason": "Location Policy: Non-Bangalore on-site rejected (Thane) (Skill match: 42%)",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "040824001512",
@@ -133,10 +133,10 @@
     "description": "We are seeking a motivated Software Engineer & Open Source Contributor to join our Open Source Program Office (OSPO) team.",
     "url": "/job-listings-software-engineer-and-developer-independent-recruitment-consultant-freelancer-noida-gurugram-delhi-ncr-0-to-5-years-040824001512",
     "ai_score": 48,
-    "ai_reason": "Python + Java/Dot Net mix, consultant posting with wide exp range",
+    "ai_reason": "Location Policy: Non-Bangalore on-site rejected (Hybrid - Noida, Gurugram, Delhi / NCR) (Skill match: 48%)",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "110323003865",
@@ -189,7 +189,7 @@
     "ai_reason": "AI/ML role without specific stack requirements, too broad for a fresher full-stack profile.",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "131126503562",
@@ -220,10 +220,10 @@
     "description": "Mandatory Skills. Strong proficiency in Java and Spring Boot.  . Hands-on experience in designing,developing,and maintaining RESTful APIs and microservices.  . Strong understanding of Object-Oriented Programming (OOP),design patterns,and software engineering principles.  . <br><br>Experience working in Agile development environments.  . .",
     "url": "/job-listings-backend-developer-comviva-technologies-limited-noida-gurugram-0-to-4-years-131126503562",
     "ai_score": 20,
-    "ai_reason": "Apache Camel and AWS mandatory, enterprise telecom backend with no stack overlap.",
+    "ai_reason": "Location Policy: Non-Bangalore on-site rejected (Noida, Gurugram) (Skill match: 20%)",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "131126503785",
@@ -254,10 +254,10 @@
     "description": "Experience optimising apps for enterprise scale,incl<br><br>Experience developing Apps,AI and Data Pipelines within Databricks . <br><br>Experience with serverless architecture and functions . <br><br>Experience with responsive design and cross-browser compatibility . <br><br>Experience of delivering technical demos and presenting technical concepts to non-technical audiences .",
     "url": "/job-listings-ai-app-developer-telefonica-tech-pune-0-to-4-years-131126503785",
     "ai_score": 10,
-    "ai_reason": "Microsoft Azure and App Service mandatory, completely outside candidate's domain.",
+    "ai_reason": "Location Policy: On-site Pune/Mumbai rejected (only allowed if Remote) (Skill match: 10%)",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "131126502902",
@@ -288,10 +288,10 @@
     "description": "We are looking for an enthusiastic and motivated Full Stack Developer (Fresher) to join our development team<br><br>The candidate should have a basic understanding of frontend and backend development and a strong interest in building web applications",
     "url": "/job-listings-full-stack-developer-fresher-saiha-software-technologies-kochi-0-to-3-years-131126502902",
     "ai_score": 12,
-    "ai_reason": "C# and ASP.NET MVC mandatory, legacy stack mismatch",
+    "ai_reason": "Location Policy: Non-Bangalore on-site rejected (Kochi) (Skill match: 12%)",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "141126015163",
@@ -322,10 +322,10 @@
     "description": "Preferred candidate profile:  . Must have programming knowledge on C,C++,Python,Java,Data structure,Good to have knowledge on Linux,Python and Java. Must have experience in creating Software Flowchart,Sequence Diagram,Dynamic and Static Architecture of the Software.  <br><br>Experience in Linux is required and experience on scripting Language will be an added advantage",
     "url": "/job-listings-cyber-security-engineer-athrv-cloud-chennai-0-to-2-years-141126015163",
     "ai_score": 40,
-    "ai_reason": "Cyber Security Engineer role, code review focus rather than full stack development",
+    "ai_reason": "Location Policy: Non-Bangalore on-site rejected (Chennai(Siruseri)) (Skill match: 40%)",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "131126500149",
@@ -347,10 +347,10 @@
     "description": "Bachelors or masters degree in Computer Science,Software Engineering,Information Technology,Data Science,Artificial Intelligence,or a related field from an accredited university,or equivalent practical experience.  . 0 to 2 years of professional experience in application development,including relevant internships,co-ops,or hands-on project work.",
     "url": "/job-listings-application-developer-ai-crm-ruckus-networks-panaji-0-to-2-years-131126500149",
     "ai_score": 5,
-    "ai_reason": "0-10 yrs experience range, vague application developer role with zero context.",
+    "ai_reason": "Location Policy: Non-Bangalore on-site rejected (Panaji) (Skill match: 5%)",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "131126503288",
@@ -384,7 +384,7 @@
     "ai_reason": "Python Developer role, 0-1 yrs exp, strong language match",
     "applied": false,
     "status": "Ready to Apply",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "131126500568",
@@ -415,10 +415,10 @@
     "description": "Job Summary. We are looking for passionate engineering graduates who are curious about technology,eager to learn,and excited to apply their knowledge in practical business environments.  <br><br>Candidates should possess understanding of: . <br><br>Knowledge of any programming language is preferred: . Python. Java. C#. JavaScript. SQL",
     "url": "/job-listings-associate-software-engineer-it-flex-chennai-0-to-1-years-131126500568",
     "ai_score": 70,
-    "ai_reason": "Associate Software Engineer with Python and SQL match, 0-1 yrs exp",
+    "ai_reason": "Location Policy: Non-Bangalore on-site rejected (Chennai) (Skill match: 70%)",
     "applied": false,
-    "status": "Ready to Apply",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "status": "Needs Review",
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "131126502121",
@@ -483,10 +483,10 @@
     "description": "Number of years: Fresher. Computer skills: Working knowledge of QAD supported technologies,platforms and languages i.e.,Java / C#,Python,AWS,JavaScript TypeScript,HTML,XML,Open Source technologies,OS : Linux,. Proficiency in Object-Oriented Programming (OOPs) principles and experience with databases like MongoDB<br><br>Only candidates residing in Mumbai will be considered eligible.",
     "url": "/job-listings-apprentice-engineer-webjaguar-india-mumbai-0-to-1-years-131126500715",
     "ai_score": 60,
-    "ai_reason": "Apprentice Engineer with JavaScript and coding match, 0-1 yrs exp",
+    "ai_reason": "Location Policy: On-site Pune/Mumbai rejected (only allowed if Remote) (Skill match: 60%)",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "131126031493",
@@ -548,7 +548,7 @@
     "description": "Job Category: tally. Job Type: Full Time. Job Location: Chennai. Disclaimer: This job posting has been aggregated from external source<br><br>Experience with SQL databases and data migration.  . Understanding of accounting principles and business processes.  . Problem-solving skills with attention to detail.  . Ability to work independently and in a team environment.",
     "url": "/job-listings-junior-tally-developer-yennes-infotec-p-limited-chennai-0-to-3-years-131126500738",
     "ai_score": 25,
-    "ai_reason": "Tally Developer role, irrelevant niche tech stack",
+    "ai_reason": "Location Policy: Non-Bangalore on-site rejected (Chennai) (Skill match: 25%)",
     "applied": false,
     "status": "Needs Review",
     "updated_at": "2026-11-15T05:17:31.844783+00:00"
@@ -582,7 +582,7 @@
     "ai_reason": "C++ and DSA focused role, not matching web/Python/JS stack.",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "131126502280",
@@ -613,7 +613,7 @@
     "description": "Job Opening Name: Tableau Developer . Job Type: Full time . <br><br>Experience: 0-1 year",
     "url": "/job-listings-tableau-developer-training-basket-noida-0-to-1-years-131126502280",
     "ai_score": 20,
-    "ai_reason": "Tableau Developer role, data visualization focus rather than software engineering",
+    "ai_reason": "Location Policy: Non-Bangalore on-site rejected (Noida) (Skill match: 20%)",
     "applied": false,
     "status": "Needs Review",
     "updated_at": "2026-11-15T05:17:31.844783+00:00"
@@ -650,7 +650,7 @@
     "ai_reason": "J2EE focused software developer role, legacy enterprise tech",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "111126032610",
@@ -683,7 +683,7 @@
     "ai_reason": "Heuristic: Web Stack stack match for 0-3 yrs exp",
     "applied": true,
     "status": "Applied",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "131126029858",
@@ -705,7 +705,7 @@
     "ai_reason": "Frontend engineer role but stack not specified, wide exp range",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "131126925620",
@@ -739,7 +739,7 @@
     "ai_reason": "AI management/design engineering, vague programming requirements",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   },
   {
     "job_id": "131126500739",
@@ -773,6 +773,6 @@
     "ai_reason": "C++ and cloud-heavy systems role, not aligned with candidate's full-stack JS/Python focus",
     "applied": false,
     "status": "Needs Review",
-    "updated_at": "2026-11-15T05:19:36.643428+00:00"
+    "updated_at": "2026-11-15T05:34:17.943348+00:00"
   }
 ]

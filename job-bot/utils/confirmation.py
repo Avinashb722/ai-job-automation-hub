@@ -48,6 +48,16 @@ def ask_confirmation(
         print(f"\n  ⏭️ SKIPPED: AI Score {ai_score}% is below threshold {threshold}% (Job: {title} @ {company or 'Direct Employer'})")
         return False
 
+    # Location policy: Apply only for Bangalore/Bengaluru for on-site; if remote, allow Pune, Mumbai, Bangalore, or general Remote.
+    if location:
+        loc_lower = str(location).lower()
+        is_remote = any(r in loc_lower for r in ["remote", "work from home", "wfh", "anywhere", "telecommute"])
+        is_blr = any(b in loc_lower for b in ["bangalore", "bengaluru", "blr"])
+        if not (is_remote or is_blr):
+            reason = "On-site Pune/Mumbai rejected (only allowed if Remote)" if ("pune" in loc_lower or "mumbai" in loc_lower) else f"Location '{location}' is not Bangalore (Remote only allowed for Pune/Mumbai)"
+            print(f"\n  ⏭️ SKIPPED (Location Policy): {reason} (Job: {title} @ {company})")
+            return False
+
     if _auto_confirm_all:
         return True
 

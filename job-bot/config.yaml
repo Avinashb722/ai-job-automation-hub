@@ -31,8 +31,14 @@ filters:
   locations:
   - Bengaluru
   - Remote
-  - Hyderabad
+  allowed_cities:
+  - Bengaluru
+  - Bangalore
+  remote_allowed_cities:
   - Pune
+  - Mumbai
+  - Bengaluru
+  - Bangalore
   experience: 0-1
   job_type:
   - Full Time

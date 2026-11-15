@@ -197,7 +197,7 @@ CANDIDATE = {
     "name": "Avinash Biradar",
     "email": "avinashbiradar722@gmail.com",
     "phone": "+91 8746988163",
-    "location": "Bengaluru, Karnataka",
+    "location": "Bengaluru (On-site) | Remote: Pune, Mumbai, BLR",
     "role": "Fresher / Junior Full Stack Developer (2026 B.E. CSE)",
     "experience": "0 Years (Fresher)",
     "current_ctc": "₹0 LPA (Fresher)",
@@ -638,7 +638,69 @@ def evaluate_fit(title: str, company: str, loc: str, platform: str = "Naukri") -
         score += 6
         reasons.append("Fresher (0-exp) / Entry Level")
 
-    if any(k in l for k in ['bengaluru', 'bangalore', 'remote', 'hybrid', 'india']):
+def is_location_eligible(location_str: str) -> tuple[bool, str]:
+    """
+    Candidate Location Policy:
+    - On-site / Hybrid: ONLY Bangalore / Bengaluru.
+    - Remote / Work From Home: Remote is allowed; Pune and Mumbai are allowed for Remote jobs.
+    - On-site Pune or Mumbai: NOT allowed.
+    - Non-Bangalore on-site (Hyderabad, Delhi, Chennai, Gurgaon, Noida, etc.): NOT allowed.
+    """
+    if not location_str:
+        return True, "Location unspecified (Remote eligible)"
+    loc = str(location_str).lower().strip()
+    is_remote = any(r in loc for r in ["remote", "work from home", "wfh", "anywhere", "telecommute"])
+    is_blr = any(b in loc for b in ["bangalore", "bengaluru", "blr"])
+    if is_remote:
+        return True, "Remote / WFH permitted (Pune, Mumbai, BLR eligible)"
+    if is_blr:
+        return True, "Bangalore / Bengaluru on-site permitted"
+    if "pune" in loc or "mumbai" in loc:
+        return False, "On-site Pune/Mumbai rejected (only allowed if Remote)"
+    return False, f"Non-Bangalore on-site rejected ({location_str.strip()})"
+
+
+def evaluate_fit(title: str, comp: str, loc: str, plat: str = "") -> tuple[int, str]:
+    score = 70
+    reasons = []
+
+    t = (title or "").lower()
+    l = (loc or "").lower()
+
+    if any(k in t for k in ['react', 'react.js', 'frontend', 'front-end', 'ui developer']):
+        score += 15
+        reasons.append("React & Frontend ecosystem match")
+    elif any(k in t for k in ['node', 'node.js', 'backend', 'express', 'django', 'fastapi']):
+        score += 15
+        reasons.append("Node/Django backend development match")
+    elif any(k in t for k in ['python', 'py']):
+        score += 16
+        reasons.append("Python core development match")
+    elif any(k in t for k in ['full stack', 'fullstack']):
+        score += 15
+        reasons.append("Full Stack developer match")
+    elif 'software engineer' in t or 'software developer' in t:
+        score += 12
+        reasons.append("Core CS Software Engineering match")
+    elif 'ai' in t or 'ml' in t:
+        score += 13
+        reasons.append("AI & Automation project match (IRIS)")
+    elif any(k in t for k in ['sales', 'voice', 'bpo', 'telecaller', 'non-voice']):
+        return 48, "Non-technical or support role (Lower tech alignment)"
+    elif any(k in t for k in ['java', 'spring', 'php', 'ruby', 'tester', 'qa', 'automation']):
+        score += 6
+        reasons.append("CS fundamental overlap")
+
+    if any(k in t for k in ['fresher', 'intern', 'trainee', 'junior', 'jr', 'associate', 'walk-in']):
+        score += 6
+        reasons.append("Fresher (0-exp) / Entry Level")
+
+    # Enforce candidate location policy
+    loc_ok, loc_reason = is_location_eligible(loc)
+    if not loc_ok:
+        score = min(score, 63)
+        reasons.append(f"Excluded: {loc_reason}")
+    elif any(k in l for k in ['bengaluru', 'bangalore', 'remote']):
         score += 3
         reasons.append("Location match (Bengaluru / Remote)")
 
@@ -679,12 +741,15 @@ def get_all_jobs_data() -> Dict[str, Any]:
                 desc = d.get("description") or generate_job_description(title, comp, loc, skills, exp)
                 tier = "Exceptional Fit" if score >= 88 else ("Strong Fit" if score >= 75 else "Good Fit")
 
+                loc_ok, loc_reason = is_location_eligible(loc)
                 if is_applied:
                     status = "Applied"
-                elif score >= 70:
+                elif score >= 70 and loc_ok:
                     status = "Ready to Apply"
                 else:
                     status = "Needs Review"
+                    if not loc_ok:
+                        reason = f"Location Policy: {loc_reason} (Fit: {score}%)"
 
                 discovered_list.append({
                     "id": jid,
@@ -730,7 +795,16 @@ def get_all_jobs_data() -> Dict[str, Any]:
                 skills = extract_job_skills(title, "", url)
                 desc = generate_job_description(title, comp, loc, skills, exp)
                 tier = "Exceptional Fit" if score >= 88 else ("Strong Fit" if score >= 75 else "Good Fit")
-                status = "Applied" if is_applied else ("Ready to Apply" if score >= 70 else "Needs Review")
+
+                loc_ok, loc_reason = is_location_eligible(loc)
+                if is_applied:
+                    status = "Applied"
+                elif score >= 70 and loc_ok:
+                    status = "Ready to Apply"
+                else:
+                    status = "Needs Review"
+                    if not loc_ok:
+                        reason = f"Location Policy: {loc_reason} (Fit: {score}%)"
 
                 noperi_jobs.append({
                     "id": card_id,
@@ -777,7 +851,16 @@ def get_all_jobs_data() -> Dict[str, Any]:
                 skills = extract_job_skills(title, reason, url)
                 desc = generate_job_description(title, clean_comp, clean_loc, skills, exp)
                 tier = "Exceptional Fit" if score >= 88 else ("Strong Fit" if score >= 75 else "Good Fit")
-                status = "Applied" if is_applied else ("Ready to Apply" if score >= 70 else "Needs Review")
+
+                loc_ok, loc_reason = is_location_eligible(clean_loc)
+                if is_applied:
+                    status = "Applied"
+                elif score >= 70 and loc_ok:
+                    status = "Ready to Apply"
+                else:
+                    status = "Needs Review"
+                    if not loc_ok:
+                        reason = f"Location Policy: {loc_reason} (Fit: {score}%)"
 
                 jobbot_jobs.append({
                     "id": card_id,
@@ -801,14 +884,14 @@ def get_all_jobs_data() -> Dict[str, Any]:
         except Exception as e:
             print(f"Error reading job-bot DB: {e}")
 
-    # Combine all unique jobs, sorting Ready to Apply (≥70%) at the top
+    # Combine all unique jobs, sorting Ready to Apply (≥70% and Location OK) at the top
     all_jobs = discovered_list + noperi_jobs + jobbot_jobs
-    all_jobs.sort(key=lambda x: (not x.get("applied"), x.get("ai_score", 0)), reverse=True)
+    all_jobs.sort(key=lambda x: (not x.get("applied"), x.get("status") == "Ready to Apply", x.get("ai_score", 0)), reverse=True)
 
     total_applied = sum(1 for j in all_jobs if j.get("applied"))
-    ready_count = sum(1 for j in all_jobs if not j.get("applied") and j.get("ai_score", 0) >= 70)
-    review_count = sum(1 for j in all_jobs if not j.get("applied") and j.get("ai_score", 0) < 70)
-    high_match = sum(1 for j in all_jobs if j.get("ai_score", 0) >= 70)
+    ready_count = sum(1 for j in all_jobs if not j.get("applied") and j.get("status") == "Ready to Apply")
+    review_count = sum(1 for j in all_jobs if not j.get("applied") and j.get("status") != "Ready to Apply")
+    high_match = sum(1 for j in all_jobs if j.get("ai_score", 0) >= 70 and is_location_eligible(j.get("location"))[0])
 
     noperi_list = [j for j in all_jobs if j.get("source") == "NopeRi"]
     jobbot_list = [j for j in all_jobs if j.get("source") == "job-bot"]
@@ -852,8 +935,17 @@ def api_apply_job(data: Dict[str, Any]):
     job_id = str(data.get("job_id") or "")
     title = data.get("title") or "Software Engineer"
     company = data.get("company") or "Employer"
+    loc = data.get("location", "")
     url = data.get("url") or ""
     platform = data.get("platform") or "Naukri"
+
+    loc_ok, loc_reason = is_location_eligible(loc)
+    if not loc_ok:
+        runner.broadcast(f"⚠️ [APPLY BLOCKED] Candidate Location Policy: {loc_reason} for '{title}' @ '{company}'")
+        return {
+            "success": False,
+            "message": f"Application blocked by candidate location policy: {loc_reason}"
+        }
 
     SESSION_APPLIED_IDS.add(str(job_id))
     runner.broadcast(f"🎯 [MANUAL APPLY] User clicked 'Apply Now' for '{title}' @ '{company}' (ID: {job_id})")
@@ -2526,7 +2618,7 @@ DASHBOARD_HTML = r"""<!DOCTYPE html>
             Fresher (0 Exp)
           </div>
           <div class="badge-ctc" id="hdr-cand-ctc">Target: 4 LPA</div>
-          <div style="font-size: 0.75rem; color: #94a3b8;" id="hdr-cand-loc">📍 Bengaluru</div>
+          <div style="font-size: 0.75rem; color: #34d399;" id="hdr-cand-loc">📍 Bengaluru (Remote: Pune, Mumbai)</div>
         </div>
 
         <button class="btn btn-settings" onclick="openSettingsModal()">

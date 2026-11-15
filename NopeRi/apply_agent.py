@@ -388,6 +388,28 @@ def _fetch_jobs(jc: NaukriJobClient, config: dict) -> list:
 DISCOVERED_JOBS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "discovered_jobs.json")
 
 
+def is_location_eligible(location_str: str) -> tuple[bool, str]:
+    """
+    Candidate Location Policy:
+    - On-site / Hybrid: ONLY Bangalore / Bengaluru.
+    - Remote / Work From Home: Remote is allowed; Pune and Mumbai are allowed for Remote jobs.
+    - On-site Pune or Mumbai: NOT allowed.
+    - Non-Bangalore on-site (Hyderabad, Delhi, Chennai, Gurgaon, Noida, etc.): NOT allowed.
+    """
+    if not location_str:
+        return True, "Location unspecified (Remote eligible)"
+    loc = str(location_str).lower()
+    is_remote = any(r in loc for r in ["remote", "work from home", "wfh", "anywhere", "telecommute"])
+    is_blr = any(b in loc for b in ["bangalore", "bengaluru", "blr"])
+    if is_remote:
+        return True, "Remote / WFH permitted"
+    if is_blr:
+        return True, "Bangalore / Bengaluru on-site permitted"
+    if "pune" in loc or "mumbai" in loc:
+        return False, "On-site Pune/Mumbai rejected (only allowed if Remote)"
+    return False, f"Non-Bangalore on-site rejected ({location_str.strip()})"
+
+
 def _save_discovered_jobs(scored_jobs: list, raw_jobs: list, db: AppliedJobsDB) -> None:
     raw_map = {str(getattr(j, "job_id", "") or ""): j for j in raw_jobs if getattr(j, "job_id", None)}
     existing = {}
@@ -409,7 +431,15 @@ def _save_discovered_jobs(scored_jobs: list, raw_jobs: list, db: AppliedJobsDB) 
         raw_j = raw_map.get(jid)
         is_applied = db.has_applied(jid, s.get("company", ""))
         ai_score = int(s.get("ai_score") or 0)
-        status = "Applied" if is_applied else ("Ready to Apply" if ai_score >= 70 else "Needs Review")
+        loc = s.get("location", "")
+        loc_ok, loc_reason = is_location_eligible(loc)
+
+        if is_applied:
+            status = "Applied"
+        elif ai_score >= 70 and loc_ok:
+            status = "Ready to Apply"
+        else:
+            status = "Needs Review"
 
         url = getattr(raw_j, "apply_link", "") or f"https://www.naukri.com/job-listings-{jid}"
         salary = getattr(raw_j, "salary", "") or "₹3.5 - 5.0 LPA (Target: ₹4 LPA)"
@@ -591,6 +621,13 @@ def run_agent(cfg: ConfigManager, db: AppliedJobsDB, auto_confirm: bool = False)
         if db.has_applied(job.job_id, job.company):
             print(f"  {Fore.YELLOW}Status  :  Skipped — already applied previously{Style.RESET_ALL}")
             skip_dup += 1
+            continue
+
+        loc_val = getattr(job, "location", "") or meta.get("location", "")
+        loc_ok, loc_reason = is_location_eligible(loc_val)
+        if not loc_ok:
+            print(f"  {Fore.YELLOW}Status  :  Skipped — {loc_reason}{Style.RESET_ALL}")
+            skip_user += 1
             continue
 
         mandatory = job.tags[:2] if job.tags else []

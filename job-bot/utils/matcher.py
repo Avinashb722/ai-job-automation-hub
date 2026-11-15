@@ -66,6 +66,26 @@ def slug_to_title(url: str) -> str:
     return ""
 
 
+def is_location_allowed(location: str) -> tuple[bool, str]:
+    """
+    Candidate policy:
+    - Apply only for Bangalore / Bengaluru for on-site / hybrid.
+    - If remote job, allow Pune, Mumbai, Bangalore, or general Remote / WFH.
+    """
+    if not location:
+        return True, "Location unspecified (Remote eligible)"
+    loc = str(location).lower().strip()
+    is_remote = any(r in loc for r in ["remote", "work from home", "wfh", "anywhere", "telecommute"])
+    is_blr = any(b in loc for b in ["bangalore", "bengaluru", "blr"])
+    if is_remote:
+        return True, "Remote / WFH permitted (Pune, Mumbai, BLR eligible)"
+    if is_blr:
+        return True, "Bangalore / Bengaluru on-site permitted"
+    if "pune" in loc or "mumbai" in loc:
+        return False, "On-site Pune/Mumbai rejected (only allowed if Remote)"
+    return False, f"Non-Bangalore on-site rejected ({location.strip()})"
+
+
 def is_matching_job(title: str, skills: list = None, url: str = "") -> tuple[bool, str]:
     """
     Evaluates whether a vacancy matches candidate tech stack:
