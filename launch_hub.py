@@ -17,10 +17,11 @@ import re
 import csv
 import io
 import webbrowser
+import asyncio
 from datetime import datetime
 from typing import Optional, Dict, Any, List
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse, StreamingResponse, Response
 import uvicorn
 import yaml
@@ -102,6 +103,7 @@ class BotRunner:
                 env = os.environ.copy()
                 env["PYTHONIOENCODING"] = "utf-8"
                 env["PYTHONUTF8"] = "1"
+                env["PYTHONUNBUFFERED"] = "1"
 
                 proc = subprocess.Popen(
                     cmd,
@@ -1118,21 +1120,56 @@ def api_stop():
     return {"success": success, "message": msg}
 
 
+@app.post("/api/open-terminal")
+def api_open_terminal(data: Optional[Dict[str, Any]] = None):
+    data = data or {}
+    target = data.get("target", "noperi")
+    platform = data.get("platform", "all")
+
+    try:
+        if target == "noperi":
+            bat_path = os.path.join(NOPERI_DIR, "run.bat")
+            cmd = f'start "NopeRi - Naukri Auto-Apply Live Console" cmd /k "cd /d \"{NOPERI_DIR}\" && \"{bat_path}\""'
+            subprocess.Popen(cmd, cwd=NOPERI_DIR, shell=True)
+            runner.broadcast("🖥️ Launched NopeRi in a dedicated Windows Command Prompt console window.")
+            return {"success": True, "message": "NopeRi launched in native Windows Command Prompt window!"}
+        elif target == "jobbot":
+            bat_path = os.path.join(JOBBOT_DIR, "run.bat")
+            cmd = f'start "job-bot - Multi-Portal Live Console" cmd /k "cd /d \"{JOBBOT_DIR}\" && \"{bat_path}\""'
+            subprocess.Popen(cmd, cwd=JOBBOT_DIR, shell=True)
+            runner.broadcast("🖥️ Launched job-bot in a dedicated Windows Command Prompt console window.")
+            return {"success": True, "message": "job-bot launched in native Windows Command Prompt window!"}
+        else:
+            bat_path = os.path.join(BASE_DIR, "run.bat")
+            cmd = f'start "AI Job Automation Hub Terminal" cmd /k "cd /d \"{BASE_DIR}\" && \"{bat_path}\""'
+            subprocess.Popen(cmd, cwd=BASE_DIR, shell=True)
+            runner.broadcast("🖥️ Launched AI Job Hub in a dedicated Windows Command Prompt console window.")
+            return {"success": True, "message": "Opened AI Job Hub native terminal window!"}
+    except Exception as e:
+        return {"success": False, "message": f"Error opening native terminal: {str(e)}"}
+
+
+@app.get("/api/stream")
 @app.get("/api/logs/stream")
-def api_logs_stream():
+async def api_logs_stream(request: Request):
     q = runner.subscribe()
 
-    def event_generator():
+    async def event_generator():
         try:
             yield "data: [SYSTEM] Connected to Live Terminal Stream\n\n"
             while True:
+                if await request.is_disconnected():
+                    break
                 try:
-                    line = q.get(timeout=20.0)
+                    line = q.get_nowait()
                     safe_line = line.replace("\n", " ").replace("\r", "")
                     yield f"data: {safe_line}\n\n"
                 except queue.Empty:
+                    await asyncio.sleep(0.4)
                     yield ": ping\n\n"
-        except GeneratorExit:
+                except Exception:
+                    break
+        finally:
             runner.unsubscribe(q)
 
     return StreamingResponse(event_generator(), media_type="text/event-stream")
@@ -1473,6 +1510,18 @@ DASHBOARD_HTML = r"""<!DOCTYPE html>
       background: #ef4444;
       color: white;
       box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);
+    }
+
+    .btn-cmd {
+      background: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+    .btn-cmd:hover {
+      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+      color: white;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+      transform: translateY(-2px);
     }
 
     .btn-settings {
@@ -2504,12 +2553,19 @@ DASHBOARD_HTML = r"""<!DOCTYPE html>
         <button class="btn btn-jobbot" id="btn-run-jobbot" onclick="runBots('jobbot')">
           🤖 Run job-bot (Multi-Portal)
         </button>
+        <button class="btn btn-cmd" id="btn-cmd-noperi" onclick="openNativeTerminal('noperi')" title="Open an actual Windows Command Prompt terminal window for NopeRi">
+          🖥️ Pop-out NopeRi CMD
+        </button>
         <button class="btn btn-stop" id="btn-stop" onclick="stopRun()">
           🛑 Stop
         </button>
       </div>
 
       <div class="action-right">
+        <label style="display: flex; align-items: center; gap: 0.45rem; font-size: 0.82rem; color: #cbd5e1; cursor: pointer; user-select: none;" title="Check to automatically pop open a native Windows Command Prompt when clicking Run">
+          <input type="checkbox" id="chk-pop-cmd" style="accent-color: #10b981; cursor: pointer; width: 16px; height: 16px;" />
+          <span>Auto Pop-out CMD on Run</span>
+        </label>
         <div class="status-badge">
           <span class="status-dot" id="status-dot"></span>
           <span id="status-text">Status: Checking...</span>
@@ -2584,6 +2640,8 @@ DASHBOARD_HTML = r"""<!DOCTYPE html>
           <button class="term-btn" id="term-autoscroll-btn" onclick="toggleAutoScroll()">Auto-Scroll: ON</button>
           <button class="term-btn" onclick="clearTerminal()">Clear</button>
           <button class="term-btn" onclick="copyLogs()">Copy</button>
+          <button class="term-btn" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" onclick="openNativeTerminal('noperi')" title="Launch native Windows Command Prompt window for NopeRi">🖥️ Pop-out NopeRi CMD</button>
+          <button class="term-btn" style="color: #a78bfa; border-color: rgba(167, 139, 250, 0.4);" onclick="openNativeTerminal('jobbot')" title="Launch native Windows Command Prompt window for job-bot">🖥️ Pop-out job-bot CMD</button>
         </div>
       </div>
 
@@ -3588,8 +3646,32 @@ DASHBOARD_HTML = r"""<!DOCTYPE html>
       }
     }
 
+    // Native CMD Window Launcher
+    async function openNativeTerminal(target) {
+      try {
+        const res = await fetch('/api/open-terminal', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ target: target || 'noperi' })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast(`🖥️ ${data.message}`, 'success');
+        } else {
+          showToast(`Notice: ${data.message}`, 'error');
+        }
+      } catch (e) {
+        showToast(`Terminal launch error: ${e.message}`, 'error');
+      }
+    }
+
     // Bot Control
     async function runBots(target) {
+      const popCmd = document.getElementById('chk-pop-cmd')?.checked;
+      if (popCmd) {
+        openNativeTerminal(target === 'both' ? 'noperi' : target);
+      }
+
       try {
         const res = await fetch('/api/run', {
           method: 'POST',

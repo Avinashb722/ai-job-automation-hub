@@ -378,7 +378,7 @@ def _fetch_jobs(jc: NaukriJobClient, config: dict) -> list:
                     break
                 time.sleep(1.2)
             except Exception as e:
-                print(f"  {Fore.RED}[FAIL]{Style.RESET_ALL}  {q['keyword']} @ {q.get('location','')}  →  {e}")
+                print(f"  {Fore.RED}[FAIL]{Style.RESET_ALL}  {q['keyword']} @ {q.get('location','')}  ->  {e}")
                 time.sleep(3)
 
     print(f"\n  {Fore.CYAN}Total unique jobs: {Style.BRIGHT}{len(all_jobs)}{Style.RESET_ALL}")
@@ -464,7 +464,7 @@ def _mark_job_applied_in_discovered(job_id: str) -> None:
 
 def run_agent(cfg: ConfigManager, db: AppliedJobsDB, auto_confirm: bool = False) -> dict:
     """
-    Full search → score → apply pipeline.
+    Full search -> score -> apply pipeline.
     Returns stats dict: {total, applied, skipped_ext, skipped_dup, failed}.
     Called by both CLI and cron/scheduler.py.
     """
@@ -746,7 +746,7 @@ if __name__ == "__main__":
         if args.setup:
             sys.exit(0)
 
-    # one-time CSV → SQLite migration (silent if no CSV)
+    # one-time CSV -> SQLite migration (silent if no CSV)
     if os.path.exists("applied_jobs.csv"):
         count = 0
         try:
